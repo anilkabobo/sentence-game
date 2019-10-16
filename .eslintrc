@@ -3,7 +3,7 @@
         "browser": true,
         "es6": true
     },
-    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "extends": ["plugin:react/recommended", "eslint:recommended"],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
@@ -18,7 +18,7 @@
         "process": false,
         "require": false,
         "window": false,
-        "faker": false
+        "faker": false,
     },
     "parser": "babel-eslint",
     "parserOptions": {
@@ -29,13 +29,10 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "flowtype"
     ],
     "rules": {
-        "indent": [
-            "error",
-            2
-        ],
         "linebreak-style": [
             "error",
             "unix"
@@ -51,6 +48,22 @@
         "comma-dangle": [
             "error",
             "never"
-        ]
+        ],
+        "no-case-declarations": 0,
+        "indent": [2, 2, {"SwitchCase": 1}],
+        "react/no-unused-prop-types": 2,
+        "default-case": 0, // Required default case is nonsense.
+        "key-spacing": [2, { "beforeColon": false, "afterColon": true, "mode": "minimum" }],
+        "max-len": [2, { "code": 120, "ignoreComments": true }],
+        "newline-after-var": 2,
+        "newline-before-return": 2,
+        "no-debugger": 2,
+        // eslint-plugin-import
+        "flowtype/define-flow-type": 2,
+        "flowtype/use-flow-type": 2,
+        "flowtype/space-after-type-colon": [2, "always", { "allowLineBreak": false }],
+        "flowtype/space-before-generic-bracket": [2, "never"],
+        "flowtype/space-before-type-colon": [2, "never"],
+        "flowtype/union-intersection-spacing": [2, "always"],
     }
 }
