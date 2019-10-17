@@ -16,36 +16,59 @@ type Props = {
   index: number
 };
 
-const Step = (props: Props) => {
-  const {question, isActive, updateQuestionValue, questionsValues, nextStep, prevStep, children, index} = props;
-  const value: string = question ? questionsValues.getIn([question.name, 'value']) : '';
+class Step extends React.Component<Props> {
 
-  return (
-    <div className={`step ${isActive ? 'step--active' : ''}`}>
-      {question ? 
-        <div>
-          <TextField 
-            value={value || ''}
-            name={question.name}
-            label={question.label}
-            onChange={(value) => updateQuestionValue(question.name, value)}
-            onSubmit={() => nextStep(index)}
-          />
-          <div className="button__container">
-            {index !== 0 && 
+  input: ?HTMLInputElement
+
+  constructor(props) {
+    super(props);
+
+    this.input = null;
+  }
+
+  componentDidUpdate() {
+    if (this.input) {
+      if (this.props.isActive) {
+        this.input.focus();
+      } else (
+        this.input.blur()
+      );
+    }
+  }
+
+  render() {
+    const {question, isActive, updateQuestionValue, questionsValues, nextStep, prevStep, children, index} = this.props;
+    const value: string = question ? questionsValues.getIn([question.name, 'value']) : '';
+
+    return (
+      <div className={`step ${isActive ? 'step--active' : ''}`}>
+        {question ? 
+          <div>
+            <TextField 
+              value={value || ''}
+              name={question.name}
+              label={question.label}
+              onChange={(value) => updateQuestionValue(question.name, value)}
+              onSubmit={() => nextStep(index)}
+              placeholder={question.placeholder}
+              inputRef={(el) => this.input = el}
+            />
+            <div className="button__container">
+              {index !== 0 && 
               <button className="button button--secondary" onClick={() => prevStep(index)}>Back</button>
-            }
-            <button className="button button--primary" onClick={() => nextStep(index)}>Next</button>
+              }
+              <button className="button button--primary" onClick={() => nextStep(index)}>Next</button>
+            </div>
           </div>
-        </div>
-        : 
-        <div>
-          {children}
-        </div>
-      }
-    </div>
-  );
-};
+          : 
+          <div>
+            {children}
+          </div>
+        }
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = (state) => ({
   questionsValues: state.sentenceGenerator.questions

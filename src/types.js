@@ -1,12 +1,13 @@
 export type State = {
   questions: Map,
-  step: number,
   result: string,
+  step: number
 }
 
 export type Question = {
-  type: string,
   label: string,
   name: string,
-  position: number
+  placeholder?: string,
+  position: number,
+  type: string
 }

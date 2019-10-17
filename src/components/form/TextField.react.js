@@ -7,11 +7,12 @@ type Props = {
   label: string,
   name: string,
   onChange: Function,
-  onSubmit: Function
+  onSubmit: Function,
+  inputRef?: Function
 };
 
 const TextField = (props: Props) => {
-  const { name, label, placeholder, value, onChange, onSubmit } = props;
+  const { name, label, placeholder, value, onChange, onSubmit, inputRef } = props;
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -30,6 +31,7 @@ const TextField = (props: Props) => {
         value={value || ''} 
         onChange={(event) => onChange(event.target.value)}
         onKeyDown={handleKeyDown}
+        ref={inputRef}
       />
     </label>
   );

@@ -3,7 +3,6 @@ import configureStore from './store';
 import React from 'react';
 import questions from './data/initialQuestions';
 import { Provider } from 'react-redux';
-import './App.css';
 
 const App = () => (
   <Provider store={configureStore()}>

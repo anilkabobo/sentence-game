@@ -3,7 +3,8 @@ export default [
     type: 'text',
     label: 'Who?',
     name: 'who',
-    position: 1
+    position: 1,
+    placeholder: 'Name'
   },
   {
     type: 'text',

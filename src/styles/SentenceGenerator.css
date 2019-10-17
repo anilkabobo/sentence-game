@@ -1,15 +1,17 @@
 .step {
-    padding: 30px;
     position: absolute;
-    top: 20%;
-    right: -500px;
+    top: 25%;
+    left: 50%;
+    opacity: 0;
     width: 400px;
-    margin-right: -200px;
+    margin-left: -200px;
+    box-sizing: border-box;
 }
 
 .step--active {
-    right: 50%;
-    transition: right 1s;
+    opacity: 1;
+    transition: opacity 1s;
+    z-index: 2;
 }
 
 .field {
